@@ -1,0 +1,17 @@
+name: Query NexusMods GraphQL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  query-nexusmods:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make GraphQL request to NexusMods
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json" \
+            -H "Cookie: nexusmods_session=${{ secrets.NEXUSMODS_API_KEY }}" \
+            --data '{"query":"\n    query FavouriteGames {\n  favouriteGames {\n    artworkSchema\n    domainName\n    id\n    name\n  }\n}\n    ","operationName":"FavouriteGames"}' \
+            https://api.nexusmods.com/v2/graphql
