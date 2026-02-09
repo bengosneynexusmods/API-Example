@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  query-nexusmods:
+  upload-to-nexusmods:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,6 +17,7 @@ jobs:
         uses: bengosneynexusmods/upload-action@main
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
-          mod_uid: ${{ secrets.NEXUSMODS_MOD_UID }}
+          mod_id: ${{ vars.NEXUSMODS_MOD_ID }}
+          game_domain_name: ${{ vars.NEXUSMODS_GAME_DOMAIN }}
           filename: mod.zip
           version: 1.2.${{ github.run_number }}
