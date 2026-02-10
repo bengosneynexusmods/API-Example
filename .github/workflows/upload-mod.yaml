@@ -15,7 +15,7 @@ jobs:
 
       - name: Upload mod to NexusMods
         id: upload
-        uses: bengosneynexusmods/upload-action@main
+        uses: Nexus-Mods/upload-action@main
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
           mod_id: ${{ vars.NEXUSMODS_MOD_ID }}
