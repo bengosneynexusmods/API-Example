@@ -18,13 +18,13 @@ jobs:
         uses: Nexus-Mods/upload-action@main
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
-          mod_id: ${{ vars.NEXUSMODS_MOD_ID }}
+          file_id: ${{ vars.NEXUSMODS_FILE_ID }}
           game_domain_name: ${{ vars.NEXUSMODS_GAME_DOMAIN }}
           filename: mod.zip
           version: 1.2.${{ github.run_number }}
 
       - name: Save FILE_UID to variable
         run: |
-          gh variable set FILE_UID --body "${{ steps.upload.outputs.FILE_UID }}"
+          gh variable set FILE_UID --body "${{ steps.upload.outputs.file_uid }}"
         env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
