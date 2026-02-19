@@ -2,6 +2,10 @@ name: Upload Mod to NexusMods
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number for the release'
+        required: true
 
 jobs:
   upload-to-nexusmods:
@@ -21,10 +25,5 @@ jobs:
           file_id: ${{ vars.NEXUSMODS_FILE_ID }}
           game_domain_name: ${{ vars.NEXUSMODS_GAME_DOMAIN }}
           filename: mod.zip
-          version: 1.2.${{ github.run_number }}
+          version: ${{ github.event.inputs.version }}
 
-      - name: Save FILE_UID to variable
-        run: |
-          gh variable set FILE_UID --body "${{ steps.upload.outputs.file_uid }}"
-        env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
