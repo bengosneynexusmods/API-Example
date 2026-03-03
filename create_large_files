@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Starting file generation..."
+
+for i in {1..10}
+do
+    echo "Generating file_$i..."
+    dd if=/dev/urandom of=src/file_$i bs=1M count=50 status=progress
+done
+
+echo "Finished!"
