@@ -28,5 +28,6 @@ jobs:
           game_domain_name: ${{ vars.NEXUSMODS_GAME_DOMAIN }}
           filename: mod.zip
           display_name: "My Amazing Mod"
+          description: "Test description"
           version: ${{ github.event.release.tag_name || github.event.inputs.version }}
 
