@@ -24,8 +24,7 @@ To use this workflow in your own project, you'll need to configure the following
 
 ### Variables
 
-- `NEXUSMODS_FILE_ID` - The file ID for your mod on NexusMods
-- `NEXUSMODS_GAME_DOMAIN` - The game domain name (e.g., `skyrimspecialedition`, `baldursgate3`)
+- `NEXUSMODS_FILE_GROUP_ID` - The file Group ID for your mod on NexusMods
 
 ## Usage
 
