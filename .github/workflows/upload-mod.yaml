@@ -24,8 +24,7 @@ jobs:
         uses: Nexus-Mods/upload-action@main
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
-          file_id: ${{ vars.NEXUSMODS_FILE_ID }}
-          game_domain_name: ${{ vars.NEXUSMODS_GAME_DOMAIN }}
+          file_group_id: ${{ vars.NEXUSMODS_FILE_GROUP_ID }}
           filename: mod.zip
           display_name: "My Amazing Mod"
           description: "Test description"
