@@ -10,9 +10,10 @@ This repository provides a working example of the [Nexus-Mods/upload-action](htt
 
 The workflow in `.github/workflows/upload-mod.yaml`:
 
-1. Checks out the repository
-2. Zips the contents of the `src/` directory
-3. Uploads the zip file to NexusMods using their API
+1. Checks out the repository (with full history so the changelog can be built)
+2. Generates a changelog from the current date and the 10 most recent commits
+3. Zips the contents of the `src/` directory
+4. Uploads the zip file to NexusMods using their API, including the generated changelog for the version
 
 ## Setup
 
@@ -25,6 +26,7 @@ To use this workflow in your own project, you'll need to configure the following
 ### Variables
 
 - `NEXUSMODS_FILE_ID` - The File ID for your mod on NexusMods
+- `NEXUSMODS_MOD_ID` - The Mod ID for your mod on NexusMods (required to add a changelog)
 
 ## Usage
 
@@ -34,6 +36,8 @@ To use this workflow in your own project, you'll need to configure the following
 4. Trigger the workflow using one of the following methods:
    - **Create a release** - The workflow runs automatically and uses the release tag as the version
    - **Manual trigger** - Go to the Actions tab, select the workflow, and enter a version number
+
+   In both cases the changelog is generated automatically from the current date and recent commits.
 
 ## License
 

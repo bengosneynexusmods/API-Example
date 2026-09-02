@@ -15,6 +15,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          {
+            echo "changelog<<EOF"
+            echo "Released on $(date -u +'%Y-%m-%d')"
+            echo ""
+            echo "Recent changes:"
+            git log -n 10 --no-merges --pretty=format:'- %s'
+            echo ""
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Zip mod files
         run: zip -r mod.zip src/
@@ -25,9 +40,11 @@ jobs:
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
           file_id: ${{ vars.NEXUSMODS_FILE_ID }}
+          mod_id: ${{ vars.NEXUSMODS_MOD_ID }}
           filename: mod.zip
           display_name: "My Amazing Mod"
           description: "Test description"
           version: ${{ github.event.release.tag_name || github.event.inputs.version }}
+          changelog: ${{ steps.changelog.outputs.changelog }}
           update_mod_version: true
 
